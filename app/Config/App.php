@@ -70,7 +70,7 @@ class App extends BaseConfig
      * strings (like currency markers, numbers, etc), that your program
      * should run under for this request.
      */
-    public string $defaultLocale = 'en';
+    public string $defaultLocale = 'es';
 
     /**
      * --------------------------------------------------------------------------
@@ -156,6 +156,20 @@ class App extends BaseConfig
      *
      * @var array<string, string>
      */
+    public $sessionDriver            = 'CodeIgniter\Session\Handlers\FileHandler';
+    public $sessionCookieName        = 'ci_session';
+    public $sessionExpiration        = 0;
+    public $sessionSavePath          = WRITEPATH . 'session';
+    public $sessionMatchIP           = false;
+    public $sessionTimeToUpdate      = 300;
+    public $sessionRegenerateDestroy = false;
+
+    public $cookiePrefix   = '';
+    public $cookieDomain   = '';
+    public $cookiePath     = '/';
+    public $cookieSecure   = false;
+    public $cookieHTTPOnly = false;
+
     public array $proxyIPs = [];
 
     /**
@@ -170,9 +184,18 @@ class App extends BaseConfig
      * restrictions at run time.
      *
      * For a better understanding of CSP, see these documents:
+     * 
      *
      * @see http://www.html5rocks.com/en/tutorials/security/content-security-policy/
      * @see http://www.w3.org/TR/CSP/
      */
+
+    public $CSRFTokenName  = 'csrf_test_name';
+    public $CSRFHeaderName = 'X-CSRF-TOKEN';
+    public $CSRFCookieName = 'csrf_cookie_name';
+    public $CSRFExpire     = 7200;
+    public $CSRFRegenerate = true;
+    public $CSRFRedirect   = true;
+
     public bool $CSPEnabled = false;
 }

@@ -1,29 +1,37 @@
 <?= $this->extend('layouts/default') ?>
 
-<?= $this->section('title') ?>New task<?= $this->endSection() ?>
+<?= $this->section('title') ?><?= lang('Tasks.new_task') ?><?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
 
-<h1>New task</h1>
+<h1 class="title"><?= lang('Tasks.new_task') ?></h1>
 
-<?php if (session()->has('errors')) : ?>
+<?php if (session()->has('errors')): ?>
     <ul>
-        <?php foreach (session('errors') as $error) : ?>
+        <?php foreach(session('errors') as $error): ?>
             <li><?= $error ?></li>
         <?php endforeach; ?>
     </ul>
 <?php endif ?>
 
-<?= form_open("/tasks/create") ?>
+<div class="container">
 
-<div>
-    <label for="description">Description</label>
-    <input type="text" name="description" id="description" value="">
+    <?= form_open("/tasks/create") ?>
+
+        <?= $this->include('Tasks/form') ?>
+        
+        <div class="field is-grouped">
+            <div class="control">
+                <button class="button is-primary"><?= lang('Tasks.save') ?></button>
+            </div>
+            
+            <div class="control">
+                <a class="button" href="<?= site_url("/tasks") ?>"><?= lang('Tasks.cancel') ?></a>
+            </div>
+        </div>
+
+    </form>
+
 </div>
-
-<button>Save</button>
-<a href="<?= site_url("/tasks") ?>">Cancel</a>
-
-</form>
 
 <?= $this->endSection() ?>
